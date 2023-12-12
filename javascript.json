@@ -1,0 +1,6 @@
+{
+  "getData": {
+    "prefix": "getData",
+    "body": "$1: getData(${2})${3:,}"
+  }
+}
