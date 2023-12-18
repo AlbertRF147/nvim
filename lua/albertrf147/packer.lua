@@ -24,6 +24,11 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	})
+
 	use({ "ThePrimeagen/harpoon", requires = { { "nvim-lua/plenary.nvim" } } })
 
 	use("mbbill/undotree")
@@ -125,4 +130,21 @@ return require("packer").startup(function(use)
 		run = "npm install --legacy-peer-deps && npm run compile",
 	})
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+
+	-- Disable search highlighting when done
+	use({ "haya14busa/is.vim" })
+
+	-- TPope string replacement
+	use({ "tpope/vim-abolish" })
+
+	-- Quickfix list operations
+	use({ "romainl/vim-qf" })
+
+	-- Autopairs
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 end)

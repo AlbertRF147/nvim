@@ -13,14 +13,6 @@ vim.opt.expandtab = true
 
 vim.opt.smartindent = true
 
-vim.cmd [[
-  set cursorline
-  hi cursorline cterm=none term=none
-  autocmd WinEnter * setlocal cursorline
-  highlight CursorLine guibg=#424242 ctermbg=234
-  autocmd WinLeave * setlocal nocursorline
-]]
-
 vim.opt.wrap = false
 
 vim.opt.swapfile = false
@@ -28,7 +20,7 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -46,3 +38,7 @@ vim.opt.cursorline = true
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.cmd([[
+  colorscheme monokai-pro
+]])

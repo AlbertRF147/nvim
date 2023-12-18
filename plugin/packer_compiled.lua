@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["is.vim"] = {
+    loaded = true,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/is.vim",
+    url = "https://github.com/haya14busa/is.vim"
+  },
   ["lazygit.nvim"] = {
     loaded = true,
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
@@ -128,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["markdown-preview.nvim"] = {
     loaded = false,
@@ -156,6 +166,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
+  },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -193,8 +209,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["oil.nvim"] = {
@@ -239,10 +256,20 @@ _G.packer_plugins = {
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-abolish"] = {
+    loaded = true,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/vim-abolish",
+    url = "https://github.com/tpope/vim-abolish"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/Users/albert/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-qf"] = {
+    loaded = true,
+    path = "/Users/albert/.local/share/nvim/site/pack/packer/start/vim-qf",
+    url = "https://github.com/romainl/vim-qf"
   },
   ["vim-startuptime"] = {
     loaded = true,
@@ -277,6 +304,14 @@ time([[Setup for markdown-preview.nvim]], false)
 time([[Config for trouble.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "trouble.nvim")
 time([[Config for trouble.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: monokai-pro.nvim
+time([[Config for monokai-pro.nvim]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16monokai-pro\frequire\0", "config", "monokai-pro.nvim")
+time([[Config for monokai-pro.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
@@ -285,10 +320,6 @@ time([[Config for which-key.nvim]], false)
 time([[Config for oil.nvim]], true)
 try_loadstring("\27LJ\2\n1\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\boil\frequire\0", "config", "oil.nvim")
 time([[Config for oil.nvim]], false)
--- Config for: monokai-pro.nvim
-time([[Config for monokai-pro.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16monokai-pro\frequire\0", "config", "monokai-pro.nvim")
-time([[Config for monokai-pro.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
