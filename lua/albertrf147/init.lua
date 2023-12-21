@@ -1,3 +1,4 @@
+require("albertrf147.indent")
 require("albertrf147.neodev")
 require("albertrf147.remap")
 require("albertrf147.packer")

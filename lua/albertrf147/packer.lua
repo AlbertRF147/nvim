@@ -7,9 +7,12 @@ return require("packer").startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
+	-- Heuristic buffer settings
+	use({ "tpope/vim-sleuth" })
+
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.4",
+		tag = "0.1.x",
 		-- or                            , branch = '0.1.x',
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
@@ -33,7 +36,60 @@ return require("packer").startup(function(use)
 
 	use("mbbill/undotree")
 
+	-- Git stuff
 	use("tpope/vim-fugitive")
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
+
+	-- Tablines everywhere
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			local highlight = {
+				"RainbowRed",
+				"RainbowYellow",
+				"RainbowBlue",
+				"RainbowOrange",
+				"RainbowGreen",
+				"RainbowViolet",
+				"RainbowCyan",
+			}
+			local hooks = require("ibl.hooks")
+			-- create the highlight groups in the highlight setup hook, so they are reset
+			-- every time the colorscheme changes
+			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+				vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+				vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+				vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+				vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+				vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+				vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+				vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+			end)
+
+			vim.g.rainbow_delimiters = { highlight = highlight }
+			require("ibl").setup({ scope = { highlight = highlight } })
+
+			hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+		end,
+	})
+
+	-- Pretty delimiters
+	use({
+		"HiPhish/rainbow-delimiters.nvim",
+	})
+
+	-- Comment with gc
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 
 	use({
 		"VonHeikemen/lsp-zero.nvim",
@@ -141,10 +197,10 @@ return require("packer").startup(function(use)
 	use({ "romainl/vim-qf" })
 
 	-- Autopairs
-	use({
-		"windwp/nvim-autopairs",
-		config = function()
-			require("nvim-autopairs").setup({})
-		end,
-	})
+	--	use({
+	--		"windwp/nvim-autopairs",
+	--		config = function()
+	--			require("nvim-autopairs").setup({})
+	--		end,
+	--	})
 end)

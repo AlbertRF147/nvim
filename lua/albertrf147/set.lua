@@ -1,14 +1,26 @@
 vim.opt.guicursor = ""
 
+vim.o.mouse = "a"
+
+vim.o.clipboard = "unnamedplus"
+
+vim.o.breakindent = true
+
+-- Decrease update time
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
+vim.o.completeopt = "menuone,noselect"
+
 vim.opt.timeoutlen = 500
 vim.g.which_key_timeout = 500
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true

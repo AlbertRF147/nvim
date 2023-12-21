@@ -17,8 +17,8 @@ wk.register({
 
 wk.register({
 	J = { "mzJ`z", "Join lines without losing cursor" },
-	["<C-d>"] = { "<C-d>zz", "Move down without losing cursor" },
 	["<C-u>"] = { "<C-u>zz", "Move up without losing cursor" },
+	["<C-d>"] = { "<C-d>zz", "Move down without losing cursor" },
 	["n"] = { "nzzzv" },
 	["N"] = { "Nzzzv" },
 }, { mode = "n" })
