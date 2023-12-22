@@ -54,3 +54,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd([[
   colorscheme monokai-pro
 ]])
+
+vim.filetype.add({
+  extension = {
+    ejs = 'embedded_template'
+  }
+})

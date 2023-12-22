@@ -1,1 +1,2 @@
-require("albertrf147")
+require("config")
+require("plugins")

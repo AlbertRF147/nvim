@@ -15,10 +15,10 @@ local prettier_ejs_conf = {
 		return {
 			exe = "prettier",
 			args = {
-                util.escape_path(util.get_current_buffer_file_path()),
-                "--parser html",
-                "--embedded-language-formatting=off",
-            },
+				util.escape_path(util.get_current_buffer_file_path()),
+				"--parser html",
+				"--embedded-language-formatting=off",
+			},
 			stdin = true,
 		}
 	end,
@@ -29,9 +29,9 @@ local js_beautify_conf = {
 		return {
 			exe = "js-beautify",
 			args = {
-                util.escape_path(util.get_current_buffer_file_path()),
-                "--html",
-            },
+				util.escape_path(util.get_current_buffer_file_path()),
+				"--html",
+			},
 			stdin = true,
 		}
 	end,

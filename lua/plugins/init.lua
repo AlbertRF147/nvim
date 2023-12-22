@@ -1,0 +1,7 @@
+require("plugins.gitsigns")
+require("plugins.luasnip")
+require("plugins.whichkey")
+require("plugins.lsp")
+require("plugins.formatter")
+require("plugins.nvim-tree")
+require("plugins.indent")

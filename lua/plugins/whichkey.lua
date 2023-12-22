@@ -8,7 +8,36 @@ local opts = {
 	noremap = true,
 	nowait = false,
 }
-local dap = require("dap")
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+-- Harpoon
+wk.register({
+	a = {
+		function()
+			mark.add_file()
+		end,
+		"Harpoon add file",
+	},
+	h = {
+		function()
+			ui.toggle_quick_menu()
+		end,
+		"Harpoon toggle menu"
+	},
+	["<C-h>"] = {
+		function()
+			ui.nav_prev()
+		end,
+		"Harpoon nav prev"
+	},
+	["<C-l>"] = {
+		function()
+			ui.nav_next()
+		end,
+		"Harpoon nav next"
+	},
+}, opts)
 
 wk.register({
 	J = { ":m '>+1<CR>gv=gv", "Move selection up" },
@@ -93,40 +122,4 @@ wk.register({
 
 wk.register({
 	g = { "<cmd>LazyGit<CR>", "Lazy Git" },
-}, opts)
-
-wk.register({
-	d = {
-		name = "debug",
-		b = {
-			function()
-				dap.toggle_breakpoint()
-			end,
-			"Add breakpoint",
-		},
-		c = {
-			function()
-				dap.continue()
-			end,
-			"Continue",
-		},
-		["["] = {
-			function()
-				dap.step_over()
-			end,
-			"Step over",
-		},
-		["{"] = {
-			function()
-				dap.step_into()
-			end,
-			"Step into",
-		},
-		i = {
-			function()
-				dap.repl.open()
-			end,
-			"Inspect",
-		},
-	},
 }, opts)
