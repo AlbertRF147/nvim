@@ -13,6 +13,20 @@ local ui = require("harpoon.ui")
 
 -- Harpoon
 wk.register({
+	["<C-h>"] = {
+		function()
+			ui.nav_prev()
+		end,
+		"Harpoon nav prev",
+	},
+	["<C-l>"] = {
+		function()
+			ui.nav_next()
+		end,
+		"Harpoon nav next",
+	},
+}, { mode = "n" })
+wk.register({
 	a = {
 		function()
 			mark.add_file()
@@ -23,19 +37,7 @@ wk.register({
 		function()
 			ui.toggle_quick_menu()
 		end,
-		"Harpoon toggle menu"
-	},
-	["<C-h>"] = {
-		function()
-			ui.nav_prev()
-		end,
-		"Harpoon nav prev"
-	},
-	["<C-l>"] = {
-		function()
-			ui.nav_next()
-		end,
-		"Harpoon nav next"
+		"Harpoon toggle menu",
 	},
 }, opts)
 
@@ -90,7 +92,13 @@ wk.register({
 
 wk.register({
 	b = {
-		f = { "<cmd>Format<cr>", "Format buffer" },
+		q = {
+			function()
+				vim.cmd("QmkFormat")
+			end,
+			"Format QMK keymap",
+		},
+		f = { vim.lsp.buf.format, "Format buffer" },
 		v = {
 			function()
 				vim.cmd("vsplit")

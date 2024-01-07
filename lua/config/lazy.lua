@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
@@ -9,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
@@ -47,7 +49,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "nvim-treesitter/playground", enabled = false },
+	{ "nvim-treesitter/playground", enabled = true },
 
 	-- Theme
 	{
@@ -193,6 +195,17 @@ require("lazy").setup({
 		"windwp/nvim-autopairs",
 		config = function()
 			require("nvim-autopairs").setup({})
+		end,
+	},
+
+	-- null-ls replacement
+	"nvimtools/none-ls.nvim",
+
+	-- Align text
+	{
+		"echasnovski/mini.align",
+		config = function()
+			require("mini.align").setup()
 		end,
 	},
 })
