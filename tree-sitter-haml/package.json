@@ -1,0 +1,21 @@
+{
+  "name": "tree-sitter-haml",
+  "version": "1.0.0",
+  "description": "Tree sitter for haml",
+  "main": "bindings/node",
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "build": "npm run generate && npm run test",
+    "build:watch": "nodemon --exec \"npm run build\" --watch ./test/corpus/main.txt --watch  ./grammar.js"
+  },
+  "author": "AlbertRF147",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "tree-sitter-cli": "^0.20.8"
+  }
+}

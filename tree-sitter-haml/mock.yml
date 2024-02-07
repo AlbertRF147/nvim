@@ -1,0 +1,27 @@
+# Sample YAML Configuration File
+
+server:
+  host: example.com
+  port: 8080
+  protocol: http
+
+database:
+  name: mydatabase
+  username: user123
+  password: secretpassword
+  host: db.example.com
+  port: 5432
+
+logging:
+  level: info
+  file: /var/log/myapp.log
+
+features:
+  - authentication
+  - authorization
+  - caching
+
+environment:
+  name: production
+  debug: false
+

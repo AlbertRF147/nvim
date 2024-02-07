@@ -23,6 +23,9 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.opt.autoread = true
+-- vim.opt.buftype = "nofile"
+
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
@@ -46,10 +49,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.opt.cursorline = true
---
--- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 vim.cmd([[
   colorscheme monokai-pro

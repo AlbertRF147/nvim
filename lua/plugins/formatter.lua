@@ -37,6 +37,40 @@ local js_beautify_conf = {
 	end,
 }
 
+local prettier_haml = {
+	function()
+		return {
+			exe = "npx prettier",
+			args = {
+				util.escape_path(util.get_current_buffer_file_path()),
+				"-plugin=@prettier/plugin-haml",
+			},
+			stdin = true,
+		}
+	end,
+}
+
+local beautify = function()
+	return {
+		exe = "html-beautify",
+		args = {
+			util.escape_path(util.get_current_buffer_file_path()),
+		},
+		stdin = true,
+	}
+end
+
+local rustywind = function()
+	return {
+		exe = "rustywind",
+		args = {
+			util.escape_path(util.get_current_buffer_file_path()),
+			"--write"
+		},
+		stdin = false,
+	}
+end
+
 require("formatter").setup({
 	logging = true,
 	filetype = {
@@ -50,5 +84,10 @@ require("formatter").setup({
 			require("formatter.filetypes.lua").stylua,
 		},
 		embedded_template = prettier_ejs_conf,
+		haml = prettier_haml,
+		eruby = {
+			beautify,
+			-- rustywind,
+		},
 	},
 })

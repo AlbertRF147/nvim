@@ -8,38 +8,43 @@ local opts = {
 	noremap = true,
 	nowait = false,
 }
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
+local harpoon = require('harpoon')
 
 -- Harpoon
 wk.register({
 	["<C-h>"] = {
 		function()
-			ui.nav_prev()
+			harpoon:list():prev()
 		end,
 		"Harpoon nav prev",
 	},
 	["<C-l>"] = {
 		function()
-			ui.nav_next()
+			harpoon:list():next()
 		end,
 		"Harpoon nav next",
 	},
 }, { mode = "n" })
+
 wk.register({
 	a = {
 		function()
-			mark.add_file()
+			harpoon:list():append()
 		end,
 		"Harpoon add file",
 	},
 	h = {
 		function()
-			ui.toggle_quick_menu()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end,
 		"Harpoon toggle menu",
 	},
 }, opts)
+
+wk.register({
+	["<Esc>."] = { ":vertical res +5<Enter>", "Increase buffer width to the right" },
+	["<Esc>,"] = { ":vertical res -5<Enter>", "Increase buffer width to the left" },
+}, { mode = "n" })
 
 wk.register({
 	J = { ":m '>+1<CR>gv=gv", "Move selection up" },
@@ -72,10 +77,18 @@ wk.register({
 wk.register({
 	f = {
 		name = "file",
-		t = { "<cmd>NvimTreeOpen<cr>", "Open Tree" },
+		b = {
+			function()
+				require('telescope.builtin').buffers()
+			end,
+			"Buffers",
+		},
+		t = { MiniFiles.open, "Open Tree" },
 		f = {
 			function()
-				require("telescope.builtin").find_files({})
+				require("telescope.builtin").find_files({
+					hidden = true,
+				})
 			end,
 			"Find files",
 		},
@@ -83,7 +96,8 @@ wk.register({
 		v = { "<cmd>Oil<CR>", "View/Edit project" },
 		s = {
 			function()
-				builtin.live_grep()
+				-- builtin.live_grep()
+				require('telescope').extensions.live_grep_args.live_grep_args()
 			end,
 			"Find in files",
 		},
