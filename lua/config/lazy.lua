@@ -58,15 +58,7 @@ require("lazy").setup({
 		end,
 	},
 
-	{ "nvim-treesitter/playground",         enabled = true },
-
-	-- Theme
-	{
-		"loctvl842/monokai-pro.nvim",
-		config = function()
-			require("monokai-pro").setup()
-		end,
-	},
+	{ "nvim-treesitter/playground",       enabled = true },
 
 	{
 		"nvim-lualine/lualine.nvim",
@@ -85,7 +77,7 @@ require("lazy").setup({
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 		config = function()
 			require('harpoon'):setup({
 				menu = {
@@ -133,13 +125,22 @@ require("lazy").setup({
 
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "VonHeikemen/lsp-zero.nvim",          branch = "v3.x" },
+	{ "VonHeikemen/lsp-zero.nvim",        branch = "v3.x" },
 	{ "neovim/nvim-lspconfig" },
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp"
+	},
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-buffer" },
-	{ "L3MON4D3/LuaSnip" },
+	{ 'saadparwaiz1/cmp_luasnip' },
+	{ "hrsh7th/cmp-cmdline" },
 
 	-- Project navigation/edit in buffers
 	{
@@ -192,7 +193,8 @@ require("lazy").setup({
 
 	{
 		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = "Trouble",
+		opts = {},
 	},
 
 	-- Format files
@@ -201,6 +203,7 @@ require("lazy").setup({
 	-- Markdown preview
 	{
 		"iamcco/markdown-preview.nvim",
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		build = "cd app && npm install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
@@ -233,6 +236,27 @@ require("lazy").setup({
 		config = function()
 			require("mini.pairs").setup()
 		end,
+	},
+
+	{
+		"echasnovski/mini.map",
+		version = false,
+		config = function()
+			require("mini.map").setup()
+		end,
+	},
+
+	-- File outline
+	{
+		"hedyhli/outline.nvim",
+		lazy = true,
+		cmd = { "Outline", "OutlineOpen" },
+		keys = { -- Example mapping to toggle outline
+			{ "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
+		},
+		opts = {
+			-- Your setup opts here
+		},
 	},
 
 	-- null-ls replacement
@@ -276,11 +300,28 @@ require("lazy").setup({
 		end,
 	},
 
+	-- {
+	-- 	"echasnovski/mini.splitjoin",
+	-- 	version = false,
+	-- 	config = function()
+	-- 		require("mini.splitjoin").setup()
+	-- 	end,
+	-- },
+
+	-- Split and join
 	{
-		"echasnovski/mini.splitjoin",
-		version = false,
+		'Wansmer/treesj',
+		-- keys = { 'gm', 'gj', 'gs' },
+		dependencies = { 'nvim-treesitter/nvim-treesitter' },
 		config = function()
-			require("mini.splitjoin").setup()
+			local tsj_utils = require('treesj.langs.utils')
+			local html = require('treesj.langs.html')
+			require('treesj').setup({
+				langs = {
+					ruby = tsj_utils.merge_preset(html, {})
+				},
+				max_join_length = 1000,
+			})
 		end,
 	},
 
@@ -325,4 +366,72 @@ require("lazy").setup({
 	-- 		require("rsync").setup()
 	-- 	end,
 	-- }
+
+	-- Theme
+	{
+		"loctvl842/monokai-pro.nvim",
+		config = function()
+			require("monokai-pro").setup()
+		end,
+	},
+
+	{ "tpope/vim-rails" },
+
+	-- Sticky scroll scope
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter-context",
+	-- 	config = function()
+	-- 		require("treesitter-context").setup()
+	-- 	end,
+	-- },
+
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				panel = {
+					auto_refresh = true,
+					keymap = {
+						jump_prev = "[[",
+						jump_next = "]]",
+						accept = "<CR>",
+						refresh = "gr",
+						open = "<M-CR>"
+					},
+					layout = {
+						position = "bottom", -- | top | left | right
+						ratio = 0.4
+					},
+				},
+				suggestion = {
+					enabled = true,
+					auto_trigger = true,
+					debounce = 75,
+					keymap = {
+						accept = "<M-l>",
+						accept_word = false,
+						accept_line = false,
+						next = "<M-]>",
+						prev = "<M-[>",
+						dismiss = "<C-]>",
+					},
+				},
+				filetypes = {
+					yaml = false,
+					markdown = false,
+					help = false,
+					gitcommit = false,
+					gitrebase = false,
+					hgcommit = false,
+					svn = false,
+					cvs = false,
+					["."] = false,
+				},
+				copilot_node_command = 'node', -- Node.js version must be > 18.x
+				server_opts_overrides = {},
+			})
+		end,
+	},
 })

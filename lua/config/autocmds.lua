@@ -16,11 +16,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
-api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		telescope_builtin.find_files()
-	end,
-})
+-- api.nvim_create_autocmd("VimEnter", {
+-- 	callback = function()
+-- 		telescope_builtin.find_files()
+-- 	end,
+-- })
 
 api.nvim_create_autocmd("FileType", {
 	pattern = { "qf" },

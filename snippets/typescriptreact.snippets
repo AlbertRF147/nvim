@@ -1,0 +1,13 @@
+snippet rfc
+		interface Props {
+		  ${2:ComponentPropsInterface}
+		}
+
+		const ${1:ComponentName}: React.FC<Props> = ({ ${4:Props} }) => {
+
+		  return (
+			  ${3:JSX}
+		  )
+		}
+
+		export default $1

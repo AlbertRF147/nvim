@@ -6,6 +6,9 @@ local prettierd_conf = {
 			exe = "prettierd",
 			args = { vim.api.nvim_buf_get_name(0) },
 			stdin = true,
+			env = {
+				string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
+			},
 		}
 	end,
 }
@@ -50,6 +53,19 @@ local prettier_haml = {
 	end,
 }
 
+local prettier_html = {
+	function()
+		return {
+			exe = "npx prettier",
+			args = {
+				util.escape_path(util.get_current_buffer_file_path()),
+				"-plugin=prettier-plugin-erb",
+			},
+			stdin = true,
+		}
+	end,
+}
+
 local beautify = function()
 	return {
 		exe = "html-beautify",
@@ -74,6 +90,7 @@ end
 require("formatter").setup({
 	logging = true,
 	filetype = {
+		astro = { prettier_ejs_conf, rustywind },
 		javascript = prettierd_conf,
 		javarcriptreact = prettierd_conf,
 		typescript = prettierd_conf,

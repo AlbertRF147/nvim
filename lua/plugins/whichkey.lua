@@ -9,16 +9,24 @@ local opts = {
 	nowait = false,
 }
 local harpoon = require('harpoon')
+local minimap = require('mini.map')
+local treesj = require('treesj')
+
+wk.register({
+	g = {
+		S = { treesj.toggle, "Split/Join" }
+	}
+}, { mode = 'n' })
 
 -- Harpoon
 wk.register({
-	["<C-h>"] = {
+	["<Left>"] = {
 		function()
 			harpoon:list():prev()
 		end,
 		"Harpoon nav prev",
 	},
-	["<C-l>"] = {
+	["<Right>"] = {
 		function()
 			harpoon:list():next()
 		end,
@@ -84,6 +92,11 @@ wk.register({
 			"Buffers",
 		},
 		t = { MiniFiles.open, "Open Tree" },
+		T = {
+			function()
+				MiniFiles.open(vim.api.nvim_buf_get_name(0))
+			end,
+			"Open Tree in current dir" },
 		f = {
 			function()
 				require("telescope.builtin").find_files({
@@ -105,7 +118,17 @@ wk.register({
 }, opts)
 
 wk.register({
+	m = { minimap.toggle, "Minimap toggle" }
+}, opts)
+
+wk.register({
 	b = {
+		D = {
+			function()
+				vim.cmd("%bd|e#")
+			end,
+			"Delete buffers"
+		},
 		q = {
 			function()
 				vim.cmd("QmkFormat")

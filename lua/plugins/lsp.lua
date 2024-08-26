@@ -37,5 +37,30 @@ require("mason-lspconfig").setup({
 				end,
 			})
 		end,
+		astro = function()
+			require("lspconfig").astro.setup({
+				on_attach = function()
+					print("Astro lspconfig attached!")
+				end
+			})
+		end
 	},
+})
+
+local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.emmet_ls.setup({
+	-- on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "css", "eruby", "html", "embedded_template", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+	init_options = {
+		html = {
+			options = {
+				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				["bem.enabled"] = true,
+			},
+		},
+	}
 })
