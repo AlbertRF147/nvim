@@ -6,9 +6,9 @@ local prettierd_conf = {
 			exe = "prettierd",
 			args = { vim.api.nvim_buf_get_name(0) },
 			stdin = true,
-			env = {
-				string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
-			},
+			-- env = {
+			-- 	string.format('PRETTIERD_DEFAULT_CONFIG=%s', vim.fn.expand('~/.config/nvim/utils/linter-config/.prettierrc.json')),
+			-- },
 		}
 	end,
 }
@@ -91,16 +91,16 @@ require("formatter").setup({
 	logging = true,
 	filetype = {
 		astro = { prettier_ejs_conf, rustywind },
-		javascript = prettierd_conf,
-		javarcriptreact = prettierd_conf,
-		typescript = prettierd_conf,
-		typescriptreact = prettierd_conf,
-		css = prettierd_conf,
+		javascript = prettier_ejs_conf,
+		javarcriptreact = prettier_ejs_conf,
+		typescript = prettier_ejs_conf,
+		typescriptreact = prettier_ejs_conf,
+		css = prettier_ejs_conf,
 		-- other formatters ...
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
-		embedded_template = prettier_ejs_conf,
+		embedded_template = { prettier_ejs_conf, ts_lsp_actions },
 		haml = prettier_haml,
 		eruby = {
 			beautify,

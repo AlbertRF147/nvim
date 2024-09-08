@@ -223,6 +223,9 @@ require("lazy").setup({
 	-- Quickfix list operations
 	"romainl/vim-qf",
 
+	-- Cmp suggestion pictograms
+	"onsails/lspkind.nvim",
+
 	-- Autopairs
 	-- {
 	-- 	"windwp/nvim-autopairs",
