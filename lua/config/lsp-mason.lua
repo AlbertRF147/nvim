@@ -6,21 +6,21 @@
 --
 local lsp_zero = require("lsp-zero")
 require("mason-lspconfig").setup({
-	ensure_installed = { "tsserver", "eslint", "emmet_ls", "lua_ls", "rust_analyzer" },
+	ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer" },
 	handlers = {
 		function(server_name)
-			if server_name == "tsserver" then
-				server_name = "ts_ls"
-				require("lspconfig")[server_name].setup({
-					-- on_attach = on_attach,
-					-- flags = lsp_flags,
-					settings = {
-						completions = {
-							completeFunctionCalls = true
-						}
-					}
-				})
-			end
+			-- if server_name == "tsserver" then
+			-- 	server_name = "ts_ls"
+			-- 	require("lspconfig")[server_name].setup({
+			-- 		-- on_attach = on_attach,
+			-- 		-- flags = lsp_flags,
+			-- 		settings = {
+			-- 			completions = {
+			-- 				completeFunctionCalls = true
+			-- 			}
+			-- 		}
+			-- 	})
+			-- end
 			if server_name == "eslint" then
 				require("lspconfig")[server_name].setup({
 					bin = 'eslint_d', -- or `eslint_d`

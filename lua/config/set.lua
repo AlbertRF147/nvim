@@ -16,7 +16,7 @@ vim.opt.timeoutlen = 500
 vim.g.which_key_timeout = 500
 
 vim.opt.nu = true
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

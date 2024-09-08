@@ -20,14 +20,13 @@ return {
 			require("Comment").setup()
 		end,
 	},
-
+	{ 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x', priority = 2 },
 	{
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup({})
 		end,
 	},
-	{ 'VonHeikemen/lsp-zero.nvim',        branch = 'v4.x' },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "neovim/nvim-lspconfig" },
 	{
@@ -228,4 +227,11 @@ return {
 	-- 		require("treesitter-context").setup()
 	-- 	end,
 	-- },
+	-- TS
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+		priority = 1
+	},
 }
