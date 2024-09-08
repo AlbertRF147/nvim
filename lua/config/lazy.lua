@@ -64,11 +64,34 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
+			local navic = require("nvim-navic")
 			require("lualine").setup({
 				options = {
 					theme = "monokai-pro",
 				},
-				sections = { lualine_c = { "vim.fn.expand('%')" } },
+				sections = {
+					lualine_c = {
+						"vim.fn.expand('%')",
+					},
+					lualine_x = {
+						{
+							function()
+								return navic.get_location()
+							end,
+							cond = function()
+								return navic.is_available()
+							end,
+						}
+					},
+				},
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = {},
+					lualine_x = {},
+					lualine_y = {},
+					lualine_z = {}
+				},
 			})
 		end,
 	},
@@ -141,6 +164,19 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-buffer" },
 	{ 'saadparwaiz1/cmp_luasnip' },
 	{ "hrsh7th/cmp-cmdline" },
+
+	-- Breadcrumbs lsp
+	{
+		"SmiteshP/nvim-navic",
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			require("nvim-navic").setup({
+				lsp = {
+					auto_attach = true
+				}
+			})
+		end
+	},
 
 	-- Project navigation/edit in buffers
 	{
