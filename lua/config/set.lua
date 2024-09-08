@@ -50,10 +50,6 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.cursorline = true
 
-vim.cmd([[
-  colorscheme monokai-pro
-]])
-
 vim.filetype.add({
   extension = {
     ejs = 'embedded_template'
