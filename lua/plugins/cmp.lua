@@ -55,45 +55,11 @@ return {
 			formatting = lsp_zero.cmp_format(),
 			mapping = {
 				["<Tab>"] = cmp.mapping({
-					c = function()
-						if cmp.visible() then
-							cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-						else
-							cmp.complete()
-						end
-					end,
-					i = function(fallback)
-						-- if luasnip.jumpable(1) then
-						-- 	return luasnip.jump(1)
-						-- elseif copilot_suggestion.is_visible() then
-						-- 	copilot_suggestion.accept()
-						-- elseif cmp.visible() then
-						-- 	cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-						-- else
-						-- 	fallback()
-						-- end
-						-- if copilot_suggestion.is_visible() then
-						-- 	copilot_suggestion.accept()
-						-- elseif cmp.visible() then
-						-- 	cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-						if luasnip.jumpable(1) then
-							return luasnip.jump(1)
-						elseif cmp.visible() then
-							cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-						else
-							fallback()
-						end
-						if cmp.visible() then
-							cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-						else
-							fallback()
-						end
-					end,
 					s = function(fallback)
 						if luasnip.jumpable(1) then
 							return luasnip.jump(1)
 						else
-							fallback()
+							-- fallback()
 						end
 					end
 				}),

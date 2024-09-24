@@ -1,6 +1,6 @@
 return {
 	"tpope/vim-sleuth", -- Heuristic buffer settings
-	{ "nvim-treesitter/playground",       enabled = true },
+	{ "nvim-treesitter/playground", enabled = true },
 	-- Tablines everywhere
 	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	-- Indent scope
@@ -20,7 +20,7 @@ return {
 			require("Comment").setup()
 		end,
 	},
-	{ 'VonHeikemen/lsp-zero.nvim', branch = 'v4.x', priority = 2 },
+	{ 'VonHeikemen/lsp-zero.nvim',  branch = 'v4.x', priority = 2 },
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -232,6 +232,29 @@ return {
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
-		priority = 1
+		priority = 1,
+		config = {
+			function()
+				require("typescript-tools").setup({
+					settings = {
+						jsx_close_tag = {
+							enable = true,
+							filetypes = { "javascriptreact", "typescriptreact" }
+						}
+					}
+				})
+			end
+		}
 	},
+	-- Floating cmd
+	{
+		"VonHeikemen/fine-cmdline.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" }
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({})
+		end
+	}
 }
