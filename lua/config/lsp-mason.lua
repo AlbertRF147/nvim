@@ -4,9 +4,13 @@
 -- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 -- end
 --
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
 local lsp_zero = require("lsp-zero")
+
 require("mason-lspconfig").setup({
-	ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer" },
+	ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer", "pyright" },
 	handlers = {
 		function(server_name)
 			-- if server_name == "tsserver" then
@@ -47,6 +51,11 @@ require("mason-lspconfig").setup({
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
 		end,
+		jedi_language_server = function()
+			require("lspconfig").jedi_language_server.setup({
+				capabilities = capabilities,
+			})
+		end,
 		emmet_ls = function()
 			require("lspconfig").emmet_ls.setup({
 				filetypes = { "css", "eruby", "html", "embedded_template", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
@@ -62,4 +71,3 @@ require("mason-lspconfig").setup({
 		end,
 	},
 })
-

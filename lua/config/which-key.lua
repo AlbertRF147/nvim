@@ -90,7 +90,7 @@ wk.add({
   { "<leader>bD", function() vim.cmd("%bd|e#") end,    desc = "Delete buffers" },
 
   { "<leader>bq", function() vim.cmd("QmkFormat") end, desc = "Format QMK keymap" },
-  { "<leader>bf", vim.lsp.buf.format,                  desc = "Format buffer" },
+  { "<leader>bf", "<cmd>Format<CR>",                  desc = "Format buffer" },
   {
     "<leader>bv",
     function()

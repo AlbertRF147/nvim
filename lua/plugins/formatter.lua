@@ -56,6 +56,9 @@ return {
 				javarcriptreact = prettier_ejs_conf(util),
 				typescript = prettier_ejs_conf(util),
 				typescriptreact = prettier_ejs_conf(util),
+				python = {
+					require("formatter.filetypes.python").ruff()
+				},
 				css = prettier_ejs_conf(util),
 				-- other formatters ...
 				lua = {
