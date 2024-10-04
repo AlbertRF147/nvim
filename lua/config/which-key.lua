@@ -56,13 +56,13 @@ wk.add({
   { "Y", '"+Y', desc = "Yank line into the void registry", mode = "n" }
 })
 
-wk.add({
-  { "<Tab>",   "<Esc>",      desc = "Escape", mode = { "n", "o" } },
-  { "<Tab>",   "<Esc>gV",    desc = "Escape", mode = "v" },
-  { "<Tab>",   "<C-C><Esc>", desc = "Escape", mode = "c" },
-  { "<Tab>",   "<Esc>`^",    desc = "Escape", mode = "i" },
-  { "<S-Tab>", "<Tab>",      desc = "Insert", mode = "i" },
-})
+-- wk.add({
+--   { "<Tab>",   "<Esc>",      desc = "Escape", mode = { "n", "o" } },
+--   { "<Tab>",   "<Esc>gV",    desc = "Escape", mode = "v" },
+--   { "<Tab>",   "<C-C><Esc>", desc = "Escape", mode = "c" },
+--   { "<Tab>",   "<Esc>`^",    desc = "Escape", mode = "i" },
+--   { "<S-Tab>", "<Tab>",      desc = "Insert", mode = "i" },
+-- })
 
 -- Visual mode yank
 wk.add({
