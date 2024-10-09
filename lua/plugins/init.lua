@@ -20,7 +20,7 @@ return {
 			require("Comment").setup()
 		end,
 	},
-	{ 'VonHeikemen/lsp-zero.nvim',  branch = 'v4.x', priority = 2 },
+	{ "VonHeikemen/lsp-zero.nvim", branch = "v4.x", priority = 2 },
 	{
 		"williamboman/mason.nvim",
 		config = function()
@@ -34,14 +34,14 @@ return {
 		-- follow latest release.
 		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		-- install jsregexp (optional!).
-		build = "make install_jsregexp"
+		build = "make install_jsregexp",
 	},
 	{
 		"hrsh7th/cmp-nvim-lsp",
 		config = function()
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
-		end
+		end,
 	},
 
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
@@ -55,10 +55,10 @@ return {
 		config = function()
 			require("nvim-navic").setup({
 				lsp = {
-					auto_attach = true
-				}
+					auto_attach = true,
+				},
 			})
-		end
+		end,
 	},
 	{
 		"stevearc/oil.nvim",
@@ -180,11 +180,11 @@ return {
 	},
 	-- Split and join
 	{
-		'Wansmer/treesj',
+		"Wansmer/treesj",
 		-- keys = { 'gm', 'gj', 'gs' },
-		dependencies = { 'nvim-treesitter/nvim-treesitter' },
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-			require('treesj').setup()
+			require("treesj").setup()
 		end,
 	},
 	-- Colors
@@ -214,10 +214,15 @@ return {
 	},
 	-- Theme
 	{
-		"loctvl842/monokai-pro.nvim",
+		"navarasu/onedark.nvim",
 		config = function()
-			require("monokai-pro").setup()
-			vim.cmd([[colorscheme monokai-pro]])
+			require("onedark").setup({
+				style = "darker",
+				highlights = {
+					-- ["LazyGitFloat"] = { fg = "$white", bg = "$grey" },
+				}
+			})
+			require("onedark").load()
 		end,
 	},
 	-- Sticky scroll scope
@@ -239,22 +244,22 @@ return {
 					settings = {
 						jsx_close_tag = {
 							enable = true,
-							filetypes = { "javascriptreact", "typescriptreact" }
-						}
-					}
+							filetypes = { "javascriptreact", "typescriptreact" },
+						},
+					},
 				})
-			end
-		}
+			end,
+		},
 	},
 	-- Floating cmd
 	{
 		"VonHeikemen/fine-cmdline.nvim",
-		dependencies = { "MunifTanjim/nui.nvim" }
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 	{
 		"windwp/nvim-ts-autotag",
 		config = function()
 			require("nvim-ts-autotag").setup({})
-		end
+		end,
 	},
 }

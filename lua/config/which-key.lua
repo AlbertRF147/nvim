@@ -128,12 +128,12 @@ wk.add({
 }, { mode = "n" })
 
 -- Fine cmdline
-wk.add({
-  {
-    "<CR>",
-    function()
-      require("fine-cmdline").open({ default_value = "" })
-    end,
-    mode = { "n", "v" },
-  }
-})
+-- wk.add({
+--   {
+--     "<CR>",
+--     function()
+--       require("fine-cmdline").open({ default_value = "" })
+--     end,
+--     mode = { "n", "v" },
+--   }
+-- })

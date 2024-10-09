@@ -5,7 +5,7 @@ return {
 		local navic = require("nvim-navic")
 		require("lualine").setup({
 			options = {
-				theme = "monokai-pro",
+				theme = "onedark",
 			},
 			sections = {
 				lualine_c = {

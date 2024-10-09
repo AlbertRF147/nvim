@@ -51,8 +51,8 @@ require("mason-lspconfig").setup({
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require("lspconfig").lua_ls.setup(lua_opts)
 		end,
-		jedi_language_server = function()
-			require("lspconfig").jedi_language_server.setup({
+		pylsp = function()
+			require("lspconfig").pylsp.setup({
 				capabilities = capabilities,
 			})
 		end,

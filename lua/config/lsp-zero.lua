@@ -2,11 +2,6 @@ local lsp_zero = require("lsp-zero")
 local nvim_command = vim.api.nvim_command
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lsp_zero.extend_lspconfig({
-	sign_text = true,
-	capabilities = capabilities,
-})
-
 lsp_zero.on_attach(function(client, bufnr)
 	lsp_zero.default_keymaps({ buffer = bufnr })
 	local opts = { buffer = bufnr, remap = false }
@@ -28,3 +23,9 @@ lsp_zero.on_attach(function(client, bufnr)
 
 	nvim_command('autocmd CursorHold <buffer> lua vim.diagnostic.open_float({ focusable = false })')
 end)
+
+-- lsp_zero.extend_lspconfig({
+-- 	sign_text = true,
+-- 	capabilities = capabilities,
+-- })
+--
