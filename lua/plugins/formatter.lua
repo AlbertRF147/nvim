@@ -54,8 +54,15 @@ return {
 				astro = { prettier_ejs_conf(util), rustywind(util) },
 				javascript = prettier_ejs_conf(util),
 				javarcriptreact = prettier_ejs_conf(util),
-				typescript = prettier_ejs_conf(util),
-				typescriptreact = prettier_ejs_conf(util),
+				typescript = {
+					require("formatter.filetypes.typescript").prettierd
+				},
+				typescriptreact = {
+					require("formatter.filetypes.typescriptreact").prettierd
+				},
+				vue = {
+					require("formatter.filetypes.vue").prettierd
+				},
 				python = {
 					require("formatter.filetypes.python").ruff()
 				},

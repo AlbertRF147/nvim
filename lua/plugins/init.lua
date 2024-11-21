@@ -96,14 +96,13 @@ return {
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		build = "cd app && npm install",
-		init = function()
-			vim.g.mkdp_filetypes = { "markdown" }
-		end,
 		ft = { "markdown" },
+		build = function()
+			vim.fn["mkdp#util#install"]()
+		end,
 	},
 	-- Disable search highlighting when done
-	"haya14busa/is.vim",
+	-- "haya14busa/is.vim",
 	-- Repeat plugin maps
 	"tpope/vim-repeat",
 	-- TPope string replacement
@@ -167,15 +166,22 @@ return {
 			require("mini.files").setup()
 		end,
 	},
+	-- {
+	-- 	"echasnovski/mini.notify",
+	-- 	version = false,
+	-- 	config = function()
+	-- 		require("mini.notify").setup({
+	-- 			lsp_progress = {
+	-- 				enable = true,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
-		"echasnovski/mini.notify",
+		"echasnovski/mini.ai",
 		version = false,
 		config = function()
-			require("mini.notify").setup({
-				lsp_progress = {
-					enable = true,
-				},
-			})
+			require("mini.ai").setup()
 		end,
 	},
 	-- Split and join
@@ -220,11 +226,12 @@ return {
 				style = "darker",
 				highlights = {
 					-- ["LazyGitFloat"] = { fg = "$white", bg = "$grey" },
-				}
+				},
 			})
 			require("onedark").load()
 		end,
 	},
+	{ "romainl/vim-cool" },
 	-- Sticky scroll scope
 	-- {
 	-- 	"nvim-treesitter/nvim-treesitter-context",
