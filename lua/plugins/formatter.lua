@@ -51,6 +51,7 @@ return {
 		require("formatter").setup({
 			logging = true,
 			filetype = {
+				json = prettier_ejs_conf(util),
 				astro = { prettier_ejs_conf(util), rustywind(util) },
 				javascript = prettier_ejs_conf(util),
 				javarcriptreact = prettier_ejs_conf(util),

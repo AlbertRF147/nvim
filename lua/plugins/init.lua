@@ -202,7 +202,12 @@ return {
 		ft = { "javascript", "html", "css", "erb", "haml", "ejs" },
 	},
 	-- QMK Ferris layout formatter (local plugin)
-	{ "AlbertRF147/qmk-formatter.nvim", opts = {} },
+	{
+		"AlbertRF147/qmk-formatter.nvim",
+		config = function()
+			require("qmk-formatter").setup()
+		end,
+	},
 	-- Local LLMs
 	{
 		"David-Kunz/gen.nvim",
