@@ -274,4 +274,14 @@ return {
 			require("nvim-ts-autotag").setup({})
 		end,
 	},
+	"sindrets/diffview.nvim",
+	"github/copilot.vim",
+	{
+		"aaronik/treewalker.nvim",
+		opts = {
+			highlight = true,
+			highlight_duration = 250,
+			highlight_group = "CursorLine",
+		}
+	},
 }

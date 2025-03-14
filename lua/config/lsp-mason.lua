@@ -71,7 +71,6 @@ require("mason-lspconfig").setup({
 			local mason_registry = require("mason-registry")
 			local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
 				.. "/node_modules/@vue/language-server"
-			print(vue_language_server_path)
 			require("lspconfig").ts_ls.setup({
 				init_options = {
 					plugins = {
@@ -82,7 +81,13 @@ require("mason-lspconfig").setup({
 						},
 					},
 				},
-				filetypes = { "vue" },
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"vue",
+				},
 			})
 		end,
 		volar = function()

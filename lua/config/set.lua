@@ -55,3 +55,5 @@ vim.filetype.add({
     ejs = 'embedded_template'
   }
 })
+
+vim.lsp.set_log_level("OFF")

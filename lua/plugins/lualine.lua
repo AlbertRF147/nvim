@@ -10,6 +10,11 @@ return {
 			sections = {
 				lualine_c = {
 					"vim.fn.expand('%')",
+					{
+						require("noice").api.statusline.mode.get,
+						cond = require("noice").api.statusline.mode.has,
+						color = { fg = "#64f7ff"}
+					}
 				},
 				lualine_x = {
 					{
@@ -19,7 +24,7 @@ return {
 						cond = function()
 							return navic.is_available()
 						end,
-					}
+					},
 				},
 			},
 			inactive_sections = {

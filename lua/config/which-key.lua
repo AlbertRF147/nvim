@@ -82,7 +82,7 @@ wk.add({
 
 -- Minimap toggle
 wk.add({
-  { "m", minimap.toggle, desc = "Minimap toggle" }
+  { "<leader>m", minimap.toggle, desc = "Minimap toggle" }
 })
 
 -- Buffer operations
@@ -137,3 +137,19 @@ wk.add({
 --     mode = { "n", "v" },
 --   }
 -- })
+
+-- movement
+wk.add({
+  { "<Up>", "<cmd>Treewalker Up<cr>",    desc = "Move up" },
+  { "<Down>", "<cmd>Treewalker Down<cr>",  desc = "Move down" },
+  { "<Left>", "<cmd>Treewalker Left<cr>",  desc = "Move left" },
+  { "<Right>", "<cmd>Treewalker Right<cr>", desc = "Move right" }
+})
+
+-- swapping
+wk.add({
+  { "<C-K>", "<cmd>Treewalker SwapUp<cr>",    desc = "Swap up" },
+  { "<C-J>", "<cmd>Treewalker SwapDown<cr>",  desc = "Swap down" },
+  { "<C-H>", "<cmd>Treewalker SwapLeft<cr>",  desc = "Swap left" },
+  { "<C-L>", "<cmd>Treewalker SwapRight<cr>", desc = "Swap right" }
+})
