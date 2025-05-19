@@ -3,14 +3,6 @@ return {
 	{ "nvim-treesitter/playground", enabled = true },
 	-- Tablines everywhere
 	-- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-	-- Indent scope
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		config = function()
-			require("mini.indentscope").setup()
-		end,
-	},
 	-- Pretty delimiters
 	-- "HiPhish/rainbow-delimiters.nvim",
 	-- Comment with gc
@@ -118,21 +110,6 @@ return {
 			require("nvim-autopairs").setup()
 		end,
 	},
-	{
-		"echasnovski/mini.pairs",
-		version = false,
-		config = function()
-			require("mini.pairs").setup()
-		end,
-	},
-
-	{
-		"echasnovski/mini.map",
-		version = false,
-		config = function()
-			require("mini.map").setup()
-		end,
-	},
 	-- File outline
 	{
 		"hedyhli/outline.nvim",
@@ -142,47 +119,6 @@ return {
 			{ "<leader>o", "<cmd>Outline<CR>", desc = "Toggle outline" },
 		},
 		opts = {},
-	},
-	-- Align text
-	{
-		"echasnovski/mini.align",
-		config = function()
-			require("mini.align").setup()
-		end,
-	},
-	-- Make f,F,t,T work on multiple lines
-	-- Repeat action by pressing key again
-	{
-		"echasnovski/mini.jump",
-		version = false,
-		config = function()
-			require("mini.jump").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.files",
-		version = false,
-		config = function()
-			require("mini.files").setup()
-		end,
-	},
-	-- {
-	-- 	"echasnovski/mini.notify",
-	-- 	version = false,
-	-- 	config = function()
-	-- 		require("mini.notify").setup({
-	-- 			lsp_progress = {
-	-- 				enable = true,
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
-	{
-		"echasnovski/mini.ai",
-		version = false,
-		config = function()
-			require("mini.ai").setup()
-		end,
 	},
 	-- Split and join
 	{
@@ -275,7 +211,26 @@ return {
 		end,
 	},
 	"sindrets/diffview.nvim",
-	"github/copilot.vim",
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		-- 	require("copilot").setup({
+		-- 		should_attach = function(_, bufname)
+		-- 			local hour = tonumber(os.date("%H"))
+		-- 			if hour > 17 and hour < 8 then
+		-- 				return true
+		-- 			end
+		-- 			if bufname:match("/controlamaterial/") then
+		-- 				return false
+		-- 			end
+		-- 			return true
+		-- 		end
+		-- 	})
+		end
+	},
 	{
 		"aaronik/treewalker.nvim",
 		opts = {
@@ -284,4 +239,13 @@ return {
 			highlight_group = "CursorLine",
 		}
 	},
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				json = { "jsonlint" },
+				yaml = { "yamllint" },
+			}
+		end
+	}
 }

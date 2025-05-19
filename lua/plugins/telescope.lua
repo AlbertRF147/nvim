@@ -11,10 +11,24 @@ return {
 		},
 	},
 	config = function()
+		local lga_actions = require("telescope-live-grep-args.actions")
+
 		require("telescope").setup({
 			defaults = {
 				file_ignore_patterns = { "node_modules", "dist" },
 			},
+			extensions = {
+				live_grep_args = {
+					auto_quoting = true, -- enable/disable auto-quoting
+					mappings = { -- extend mappings
+						i = {
+							["<C-q>"] = lga_actions.quote_prompt(),
+							["<C-i>"] = lga_actions.quote_prompt({ postfix = " --i " }),
+							["C-space"] = lga_actions.to_fuzzy_refine,
+						},
+					},
+				},
+			}
 		})
 		require("telescope").load_extension("live_grep_args")
 	end,

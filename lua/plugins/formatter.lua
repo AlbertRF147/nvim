@@ -51,7 +51,7 @@ return {
 		require("formatter").setup({
 			logging = true,
 			filetype = {
-				json = prettier_ejs_conf(util),
+				html = prettier_ejs_conf(util),
 				astro = { prettier_ejs_conf(util), rustywind(util) },
 				javascript = prettier_ejs_conf(util),
 				javarcriptreact = prettier_ejs_conf(util),
@@ -65,7 +65,16 @@ return {
 					require("formatter.filetypes.vue").prettierd
 				},
 				python = {
-					require("formatter.filetypes.python").ruff()
+					function()
+						return {
+							exe = "ruff",
+							args = { "format", "--line-length", "110", util.escape_path(util.get_current_buffer_file_path()) },
+							stdin = false
+						}
+					end
+				},
+				json = {
+					require("formatter.filetypes.json").prettierd,
 				},
 				css = prettier_ejs_conf(util),
 				-- other formatters ...

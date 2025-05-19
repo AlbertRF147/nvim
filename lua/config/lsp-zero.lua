@@ -6,6 +6,7 @@ lsp_zero.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	-- client.server_capabilities = capabilities
+	vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, opts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 	vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -22,7 +23,7 @@ lsp_zero.on_attach(function(client, bufnr)
 		nvim_command("TSToolsRemoveUnusedImports")
 	end, opts)
 	vim.keymap.set("n", "<leader>ai", function()
-		nvim_command("TSAddMissingImports")
+		nvim_command("TSToolsAddMissingImports")
 	end, opts)
 	vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 	nvim_command("autocmd CursorHold <buffer> lua vim.diagnostic.open_float({ focusable = false })")
