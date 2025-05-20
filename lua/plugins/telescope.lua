@@ -22,7 +22,7 @@ return {
 					auto_quoting = true, -- enable/disable auto-quoting
 					mappings = { -- extend mappings
 						i = {
-							["<C-q>"] = lga_actions.quote_prompt(),
+							["<C-s>"] = lga_actions.quote_prompt(),
 							["<C-i>"] = lga_actions.quote_prompt({ postfix = " --i " }),
 							["C-space"] = lga_actions.to_fuzzy_refine,
 						},

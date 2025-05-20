@@ -16,7 +16,12 @@ return {
 	{
 		"williamboman/mason.nvim",
 		config = function()
-			require("mason").setup({})
+			require("mason").setup({
+				registries = {
+					"github:mason-org/mason-registry",
+					"github:Crashdummyy/mason-registry",
+				},
+			})
 		end,
 	},
 	{ "williamboman/mason-lspconfig.nvim" },
@@ -216,20 +221,26 @@ return {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require("copilot").setup({})
-		-- 	require("copilot").setup({
-		-- 		should_attach = function(_, bufname)
-		-- 			local hour = tonumber(os.date("%H"))
-		-- 			if hour > 17 and hour < 8 then
-		-- 				return true
-		-- 			end
-		-- 			if bufname:match("/controlamaterial/") then
-		-- 				return false
-		-- 			end
-		-- 			return true
-		-- 		end
-		-- 	})
-		end
+			require("copilot").setup({
+				suggestion = {
+					auto_trigger = true,
+					keymap = {
+						accept = "<Right>",
+						dismiss = "<Left>",
+					},
+				},
+				should_attach = function(_, bufname)
+					local hour = tonumber(os.date("%H"))
+					if hour > 17 and hour < 8 then
+						return true
+					end
+					if bufname:match("/controlamaterial/") then
+						return false
+					end
+					return true
+				end,
+			})
+		end,
 	},
 	{
 		"aaronik/treewalker.nvim",
@@ -237,7 +248,7 @@ return {
 			highlight = true,
 			highlight_duration = 250,
 			highlight_group = "CursorLine",
-		}
+		},
 	},
 	{
 		"mfussenegger/nvim-lint",
@@ -246,6 +257,6 @@ return {
 				json = { "jsonlint" },
 				yaml = { "yamllint" },
 			}
-		end
-	}
+		end,
+	},
 }
