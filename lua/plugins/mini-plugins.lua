@@ -63,11 +63,4 @@ return {
 			require("mini.indentscope").setup()
 		end,
 	},
-	{
-		"echasnovski/mini.starter",
-		version = false,
-		config = function()
-			require("mini.starter").setup()
-		end,
-	}
 }

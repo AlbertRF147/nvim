@@ -1,30 +1,14 @@
--- local signs = { Error = "❌", Warn = "⚠️", Hint = "💡", Info = "ℹ️" }
--- for type, icon in pairs(signs) do
--- 	local hl = "DiagnosticSign" .. type
--- 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
--- end
---
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lsp_zero = require("lsp-zero")
-
+require("mason").setup({})
 require("mason-lspconfig").setup({
 	ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer", "pyright" },
 	handlers = {
 		function(server_name)
-			-- if server_name == "tsserver" then
-			-- 	server_name = "ts_ls"
-			-- 	require("lspconfig")[server_name].setup({
-			-- 		-- on_attach = on_attach,
-			-- 		-- flags = lsp_flags,
-			-- 		settings = {
-			-- 			completions = {
-			-- 				completeFunctionCalls = true
-			-- 			}
-			-- 		}
-			-- 	})
-			-- end
+			require("lspconfig")[server_name].setup({
+				capabilities = lsp_capabilities,
+			})
+
 			if server_name == "eslint" then
 				require("lspconfig")[server_name].setup({
 					bin = "eslint_d", -- or `eslint_d`
@@ -49,7 +33,7 @@ require("mason-lspconfig").setup({
 		end,
 		tailwindcss = function()
 			require("lspconfig").tailwindcss.setup({
-				capabilities = capabilities,
+				capabilities = lsp_capabilities,
 				filetypes = {
 					"css",
 					"eruby",
@@ -67,29 +51,29 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
-		ts_ls = function()
-			local mason_registry = require("mason-registry")
-			local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
-				.. "/node_modules/@vue/language-server"
-			require("lspconfig").ts_ls.setup({
-				init_options = {
-					plugins = {
-						{
-							name = "@vue/typescript-plugin",
-							location = vue_language_server_path,
-							languages = { "vue" },
-						},
-					},
-				},
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-				},
-			})
-		end,
+		-- ts_ls = function()
+		-- 	local mason_registry = require("mason-registry")
+		-- 	local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+		-- 		.. "/node_modules/@vue/language-server"
+		-- 	require("lspconfig").ts_ls.setup({
+		-- 		init_options = {
+		-- 			plugins = {
+		-- 				{
+		-- 					name = "@vue/typescript-plugin",
+		-- 					location = vue_language_server_path,
+		-- 					languages = { "vue" },
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 		filetypes = {
+		-- 			"javascript",
+		-- 			"javascriptreact",
+		-- 			"typescript",
+		-- 			"typescriptreact",
+		-- 			"vue",
+		-- 		},
+		-- 	})
+		-- end,
 		volar = function()
 			require("lspconfig").volar.setup({
 				init_options = {
@@ -105,17 +89,17 @@ require("mason-lspconfig").setup({
 		end,
 		bashls = function()
 			require("lspconfig").bashls.setup({
-				capabilities = capabilities,
+				capabilities = lsp_capabilities,
 			})
 		end,
 		clangd = function()
 			require("lspconfig").clangd.setup({
-				capabilities = capabilities,
+				capabilities = lsp_capabilities,
 			})
 		end,
 		pylsp = function()
 			require("lspconfig").pylsp.setup({
-				capabilities = capabilities,
+				capabilities = lsp_capabilities,
 			})
 		end,
 		emmet_ls = function()

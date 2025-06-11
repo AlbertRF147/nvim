@@ -194,6 +194,9 @@ return {
 		config = {
 			function()
 				require("typescript-tools").setup({
+					on_attach = function(client, bufnr)
+						client.server_capabilities.definitionProvider = false
+					end,
 					settings = {
 						jsx_close_tag = {
 							enable = true,
@@ -231,7 +234,7 @@ return {
 				},
 				should_attach = function(_, bufname)
 					local hour = tonumber(os.date("%H"))
-					if hour > 17 and hour < 8 then
+					if hour > 17 or hour < 8 then
 						return true
 					end
 					if bufname:match("/controlamaterial/") then

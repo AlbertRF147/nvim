@@ -1,5 +1,4 @@
 local api = vim.api
-local MiniStarter = require("mini.starter")
 
 api.nvim_create_autocmd(
 	"FileType",
@@ -13,13 +12,6 @@ api.nvim_create_autocmd("BufWinEnter", {
 		if vim.o.filetype == "help" then
 			vim.cmd.wincmd("L")
 		end
-	end,
-})
-
-api.nvim_create_autocmd("VimEnter", {
-	-- pattern = { "*.txt" },
-	callback = function()
-		MiniStarter.open()
 	end,
 })
 
