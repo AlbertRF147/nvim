@@ -9,6 +9,19 @@ require("mason-lspconfig").setup({
 				capabilities = lsp_capabilities,
 			})
 
+			if server_name == "ts_ls" then
+				require("lspconfig").ts_ls.setup({
+					capabilities = lsp_capabilities,
+					on_attach = function(client, bufnr)
+						client.server_capabilities.definitionProvider  = false
+						client.server_capabilities.referencesProvider  = false
+						-- optionally also:
+						-- client.server_capabilities.typeDefinitionProvider = false
+						-- client.server_capabilities.implementationProvider = false
+					end,
+				})
+			end
+
 			if server_name == "eslint" then
 				require("lspconfig")[server_name].setup({
 					bin = "eslint_d", -- or `eslint_d`
@@ -129,5 +142,12 @@ require("mason-lspconfig").setup({
 				},
 			})
 		end,
+		csharp_ls = function()
+			require('lspconfig').csharp_ls.setup({
+				capabilities = lsp_capabilities,
+				cmd = { "csharp-ls" },
+			})
+		end,
 	},
 })
+

@@ -200,7 +200,7 @@ return {
 					settings = {
 						jsx_close_tag = {
 							enable = true,
-							filetypes = { "javascriptreact", "typescriptreact" },
+							filetypes = { "javascript", "javascriptreact", "typescriptreact" },
 						},
 					},
 				})
@@ -218,7 +218,18 @@ return {
 			require("nvim-ts-autotag").setup({})
 		end,
 	},
-	"sindrets/diffview.nvim",
+	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("diffview").setup({
+				file_history_panel = {
+					win_config = {
+						height = 10
+					}
+				}
+			})
+		end,
+	},
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -228,30 +239,22 @@ return {
 				suggestion = {
 					auto_trigger = true,
 					keymap = {
-						accept = "<Right>",
-						dismiss = "<Left>",
+						accept = "<Tab>",
+						dismiss = "<Esc>",
 					},
 				},
 				should_attach = function(_, bufname)
+					local weekday = tonumber(os.date("%w"))
 					local hour = tonumber(os.date("%H"))
-					if hour > 17 or hour < 8 then
-						return true
-					end
-					if bufname:match("/controlamaterial/") then
-						return false
+					if weekday >= 1 and weekday <= 5 then
+						if hour >= 8 and hour <= 17 and bufname:match("/controlamaterial/") then
+							return false
+						end
 					end
 					return true
 				end,
 			})
 		end,
-	},
-	{
-		"aaronik/treewalker.nvim",
-		opts = {
-			highlight = true,
-			highlight_duration = 250,
-			highlight_group = "CursorLine",
-		},
 	},
 	{
 		"mfussenegger/nvim-lint",

@@ -87,6 +87,9 @@ return {
 					beautify(util),
 					-- rustywind,
 				},
+				csharp = {
+					require("formatter.filetypes.cs").cs,
+				}
 			},
 		})
 	end

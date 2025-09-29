@@ -56,4 +56,4 @@ vim.filetype.add({
   }
 })
 
-vim.lsp.set_log_level("OFF")
+-- vim.lsp.set_log_level("OFF")

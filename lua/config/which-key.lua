@@ -125,6 +125,13 @@ wk.add({
 		desc = "Find files",
 	},
 	{
+		"<leader>fh",
+		function()
+			require("telescope.builtin").help_tags()
+		end,
+		desc = "Find help files",
+	},
+	{
 		"<leader>fg",
 		"<cmd>Telescope git_files<cr>",
 		desc = "Find Git Files",
@@ -213,14 +220,6 @@ wk.add({
 --   }
 -- })
 
--- movement
-wk.add({
-	{ "<Up>", "<cmd>Treewalker Up<cr>", desc = "Move up" },
-	{ "<Down>", "<cmd>Treewalker Down<cr>", desc = "Move down" },
-	{ "<Left>", "<cmd>Treewalker Left<cr>", desc = "Move left" },
-	{ "<Right>", "<cmd>Treewalker Right<cr>", desc = "Move right" },
-})
-
 -- swapping
 wk.add({
 	{ "<C-K>", "<cmd>Treewalker SwapUp<cr>", desc = "Swap up" },
@@ -232,4 +231,11 @@ wk.add({
 wk.add({
 	{ "<leader>fs", live_grep_args_shortcuts.grep_visual_selection, desc = "Grep visual selection" },
 	mode = "v",
+})
+
+wk.add({
+	{ "<leader>do", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" },
+	{ "<leader>dc", "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
+	{ "<leader>df", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview file history" },
+	mode = "n",
 })

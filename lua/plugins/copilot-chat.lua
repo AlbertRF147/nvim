@@ -12,6 +12,9 @@ return {
 	},
 	config = function()
 		require("CopilotChat").setup({
+			-- window = {
+			-- 	layout = "horizontal"
+			-- },
 			prompts = {
 				ConvertToTs = {
 					prompt = "/COPILOT_GENERATE Convert this Javascript code to TypeScript",

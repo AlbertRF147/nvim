@@ -16,6 +16,7 @@ return {
 		require("telescope").setup({
 			defaults = {
 				file_ignore_patterns = { "node_modules", "dist" },
+				-- layout_strategy = "vertical",
 			},
 			extensions = {
 				live_grep_args = {
