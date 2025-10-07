@@ -62,9 +62,10 @@ vim.filetype.add({
 local notify = vim.notify
 vim.notify = function(msg, level, opts)
   if msg:match("require%('lspconfig'%)") then
-    print("This is working")
     return
   end
   notify(msg, level, opts)
 end
+
+-- If a colorscheme forces its own guicursor, re-apply this afterwards.
 

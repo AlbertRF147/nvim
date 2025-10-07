@@ -61,3 +61,41 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 --   end
 -- })
 --
+
+local function apply_bg()
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+end
+
+-- Define your preferred cursor per mode (edit this block to taste)
+local function apply_guicursor()
+	vim.opt.guicursor = table.concat({
+		"n-v-c:block", -- normal/visual/command = steady block
+		"i-ci:ver25-blinkwait700-blinkon400-blinkoff250", -- insert/cmdline insert = blinking bar
+		"r-cr:hor20", -- replace = underline
+		"o:hor50", -- operator-pending = thick underline	}, ",")
+	})
+end
+
+-- Apply now, and re-apply whenever a colorscheme is set
+local grp = vim.api.nvim_create_augroup("ForceGuiCursor", { clear = true })
+vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+	group = grp,
+	callback = function()
+		apply_guicursor()
+		apply_bg()
+	end,
+})
+
+-- Optional: if some plugin keeps changing it later, this catches any change and re-asserts yours
+vim.api.nvim_create_autocmd("OptionSet", {
+	group = grp,
+	pattern = "guicursor",
+	callback = function()
+		apply_guicursor()
+		apply_bg()
+	end,
+})

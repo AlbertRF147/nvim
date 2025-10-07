@@ -40,7 +40,7 @@ return {
 			capabilities.textDocument.completion.completionItem.snippetSupport = true
 		end,
 	},
-
+	{ "nvim-mini/mini.bufremove" },
 	{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-buffer" },
@@ -170,6 +170,7 @@ return {
 		config = function()
 			require("onedark").setup({
 				style = "darker",
+				trasparent = true,
 				highlights = {
 					-- ["LazyGitFloat"] = { fg = "$white", bg = "$grey" },
 				},
@@ -224,9 +225,9 @@ return {
 			require("diffview").setup({
 				file_history_panel = {
 					win_config = {
-						height = 10
-					}
-				}
+						height = 10,
+					},
+				},
 			})
 		end,
 	},

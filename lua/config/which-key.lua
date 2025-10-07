@@ -239,3 +239,20 @@ wk.add({
 	{ "<leader>df", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview file history" },
 	mode = "n",
 })
+
+wk.add({
+	{
+		"<leader>bra",
+		function()
+			local bufRemove = require("mini.bufremove")
+			local current = vim.api.nvim_get_current_buf()
+			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+				if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+					bufRemove.delete(buf, false)
+				end
+			end
+		end,
+		desc = "Remove all buffers",
+		mode = "n",
+	},
+})
