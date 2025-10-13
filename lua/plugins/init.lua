@@ -25,7 +25,15 @@ return {
 			})
 		end,
 	},
-	{ "williamboman/mason-lspconfig.nvim" },
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer", "pyright" },
+				automatic_enable = true,
+			})
+		end,
+	},
 	{ "neovim/nvim-lspconfig" },
 	{
 		"L3MON4D3/LuaSnip",
