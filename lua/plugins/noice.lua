@@ -32,5 +32,15 @@ return {
 				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 		})
+		-- Fix for lsp progress not showing
+		do
+			local orig = vim.lsp.handlers["$/progress"]
+			vim.lsp.handlers["$/progress"] = function(err, result, ctx, config)
+				if not result or result.token == nil then
+					return -- ignore malformed events
+				end
+				return orig(err, result, ctx, config)
+			end
+		end
 	end,
 }

@@ -10,6 +10,7 @@ return {
 			version = "^1.0.0",
 		},
 	},
+	cmd = "Telescope",
 	config = function()
 		local lga_actions = require("telescope-live-grep-args.actions")
 

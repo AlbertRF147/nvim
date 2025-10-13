@@ -76,12 +76,12 @@ local function apply_guicursor()
 		"n-v-c:block", -- normal/visual/command = steady block
 		"i-ci:ver25-blinkwait700-blinkon400-blinkoff250", -- insert/cmdline insert = blinking bar
 		"r-cr:hor20", -- replace = underline
-		"o:hor50", -- operator-pending = thick underline	}, ",")
-	})
+		"o:hor50", -- operator-pending = thick underline
+	}, ",")
 end
 
 -- Apply now, and re-apply whenever a colorscheme is set
-local grp = vim.api.nvim_create_augroup("ForceGuiCursor", { clear = true })
+local grp = vim.api.nvim_create_augroup("force_guicursor", { clear = true })
 vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
 	group = grp,
 	callback = function()

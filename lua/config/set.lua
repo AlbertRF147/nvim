@@ -56,6 +56,11 @@ vim.filetype.add({
   }
 })
 
+-- Disable providers we don't use
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- vim.lsp.set_log_level("OFF")
 
 -- Supress deprecation warning from lspconfig

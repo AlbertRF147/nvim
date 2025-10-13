@@ -1,6 +1,11 @@
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require("mason").setup({})
+require("mason").setup({
+	registries = {
+		"github:mason-org/mason-registry",
+		"github:Crashdummyy/mason-registry",
+	},
+})
 require("mason-lspconfig").setup({
 	ensure_installed = { "eslint", "emmet_ls", "lua_ls", "rust_analyzer", "pyright" },
 	handlers = {
@@ -13,8 +18,8 @@ require("mason-lspconfig").setup({
 				require("lspconfig").ts_ls.setup({
 					capabilities = lsp_capabilities,
 					on_attach = function(client, bufnr)
-						client.server_capabilities.definitionProvider  = false
-						client.server_capabilities.referencesProvider  = false
+						client.server_capabilities.definitionProvider = false
+						client.server_capabilities.referencesProvider = false
 						-- optionally also:
 						-- client.server_capabilities.typeDefinitionProvider = false
 						-- client.server_capabilities.implementationProvider = false
@@ -143,11 +148,10 @@ require("mason-lspconfig").setup({
 			})
 		end,
 		csharp_ls = function()
-			require('lspconfig').csharp_ls.setup({
+			require("lspconfig").csharp_ls.setup({
 				capabilities = lsp_capabilities,
 				cmd = { "csharp-ls" },
 			})
 		end,
 	},
 })
-

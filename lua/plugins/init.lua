@@ -15,6 +15,7 @@ return {
 	{ "VonHeikemen/lsp-zero.nvim", branch = "v4.x", priority = 2 },
 	{
 		"williamboman/mason.nvim",
+		cmd = "Mason",
 		config = function()
 			require("mason").setup({
 				registries = {
@@ -59,6 +60,7 @@ return {
 	},
 	{
 		"stevearc/oil.nvim",
+		cmd = "Oil",
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
@@ -130,6 +132,7 @@ return {
 		"Wansmer/treesj",
 		-- keys = { 'gm', 'gj', 'gs' },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 		config = function()
 			require("treesj").setup()
 		end,
@@ -150,13 +153,13 @@ return {
 		end,
 	},
 	-- Local LLMs
-	{
-		"David-Kunz/gen.nvim",
-		opts = {
-			model = "mistral", -- The default model to use.
-			show_model = true, -- Displays which model you are using at the beginning of your chat session.
-		},
-	},
+	-- {
+	-- 	"David-Kunz/gen.nvim",
+	-- 	opts = {
+	-- 		model = "mistral", -- The default model to use.
+	-- 		show_model = true, -- Displays which model you are using at the beginning of your chat session.
+	-- 	},
+	-- },
 	-- Floating popups to telescope
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
@@ -170,9 +173,13 @@ return {
 		config = function()
 			require("onedark").setup({
 				style = "darker",
-				trasparent = true,
+				transparent = false,
+				term_colors = true,
 				highlights = {
 					-- ["LazyGitFloat"] = { fg = "$white", bg = "$grey" },
+				},
+				lualine = {
+					transparent = false,
 				},
 			})
 			require("onedark").load()
@@ -265,5 +272,13 @@ return {
 				yaml = { "yamllint" },
 			}
 		end,
+	},
+	{
+		"seblyng/roslyn.nvim",
+		---@module 'roslyn.config'
+		---@type RoslynNvimConfig
+		opts = {
+			-- your configuration comes here; leave empty for default settings
+		},
 	},
 }

@@ -3,7 +3,7 @@ return {
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "javascript", "typescript", "c", "lua", "rust", "embedded_template" },
+			ensure_installed = { "javascript", "typescript", "c", "lua", "rust", "embedded_template", "c_sharp" },
 			modules = {},
 			ignore_install = {},
 			embedded_template = { enable = true },

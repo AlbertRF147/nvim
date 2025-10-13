@@ -3,6 +3,7 @@ return {
 	-- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
 	-- are highly recommended for a better experience
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+	ft = { "cs", "fs", "csproj", "fsproj", "sln" },
 	config = function()
 		local function get_secret_path(secret_guid)
 			local path = ""
@@ -23,6 +24,20 @@ return {
 		local dotnet = require("easy-dotnet")
 		-- Options are not required
 		dotnet.setup({
+			lsp = {
+				enabled = true, -- Enable builtin roslyn lsp
+				roslynator_enabled = true, -- Automatically enable roslynator analyzer
+				analyzer_assemblies = {}, -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+				config = {},
+			},
+			debugger = {
+				-- The path to netcoredbg executable
+				bin_path = "netcoredbg",
+				auto_register_dap = true,
+				mappings = {
+					open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+				},
+			},
 			---@type TestRunnerOptions
 			test_runner = {
 				---@type "split" | "vsplit" | "float" | "buf"
@@ -120,7 +135,7 @@ return {
 			-- the available one automatically with this priority:
 			-- telescope -> fzf -> snacks ->  basic
 			picker = "telescope",
-			background_scanning = true,
+			background_scanning = false,
 			notifications = {
 				--Set this to false if you have configured lualine to avoid double logging
 				handler = function(start_event)
@@ -132,25 +147,20 @@ return {
 					end
 				end,
 			},
-			debugger = {
-				mappings = {
-					open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
-				},
-			},
 			diagnostics = {
 				default_severity = "error",
 				setqflist = false,
 			},
 		})
 
-	-- 	-- Example command
-	-- 	vim.api.nvim_create_user_command("Secrets", function()
-	-- 		dotnet.secrets()
-	-- 	end, {})
-	--
-	-- 	-- Example keybinding
-	-- 	vim.keymap.set("n", "<C-p>", function()
-	-- 		dotnet.run_project()
-	-- 	end)
+		-- 	-- Example command
+		-- 	vim.api.nvim_create_user_command("Secrets", function()
+		-- 		dotnet.secrets()
+		-- 	end, {})
+		--
+		-- 	-- Example keybinding
+		-- 	vim.keymap.set("n", "<C-p>", function()
+		-- 		dotnet.run_project()
+		-- 	end)
 	end,
 }

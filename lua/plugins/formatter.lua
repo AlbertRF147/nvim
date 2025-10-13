@@ -87,8 +87,14 @@ return {
 					beautify(util),
 					-- rustywind,
 				},
-				csharp = {
-					require("formatter.filetypes.cs").cs,
+				cs = {
+					function()
+						return {
+							exe = "csharpier",
+							args = { "format", util.escape_path(util.get_current_buffer_file_path()) },
+							stdin = false,
+						}
+					end
 				}
 			},
 		})
